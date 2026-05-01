@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tb_contact', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('person_id')
-                ->constrained('person')
+                ->constrained('tb_person')
                 ->cascadeOnDelete();
             $table->string("country_code");
             $table->string("number", 9);
