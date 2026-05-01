@@ -6,15 +6,12 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('tb_contact', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->foreignUuid('person_id')
-                ->constrained('person')
+        Schema::create('contacts', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('person_id')
+                ->constrained('people')
                 ->cascadeOnDelete();
             $table->string("country_code");
             $table->string("number", 9);
@@ -22,9 +19,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('tb_contact');
